@@ -18,14 +18,14 @@
 #
 # Quartus Prime
 # Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-# Date created = 16:42:44  December 01, 2019
+# Date created = 18:29:13  October 21, 2019
 #
 # -------------------------------------------------------------------------- #
 #
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		final_proj_385_assignment_defaults.qdf
+#		lab8_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -38,9 +38,9 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE115F29C7
-set_global_assignment -name TOP_LEVEL_ENTITY final_top
+set_global_assignment -name TOP_LEVEL_ENTITY lab8
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.0.0
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:42:44  DECEMBER 01, 2019"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:29:12  OCTOBER 21, 2019"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
@@ -52,25 +52,18 @@ set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name SYSTEMVERILOG_FILE final_top.sv
-set_global_assignment -name SYSTEMVERILOG_FILE bird.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ram.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Color_Mapper.sv
-set_global_assignment -name VERILOG_FILE final_soc/synthesis/final_soc.v -library final_soc
-set_global_assignment -name QIP_FILE final_soc/synthesis/final_soc.qip
-set_global_assignment -name SYSTEMVERILOG_FILE VGA_controller.sv
-set_global_assignment -name VERILOG_FILE vga_clk.v
-set_global_assignment -name QIP_FILE vga_clk.qip
-set_global_assignment -name SYSTEMVERILOG_FILE hpi_io_intf.sv
-set_global_assignment -name SYSTEMVERILOG_FILE HexDriver.sv
-set_global_assignment -name SYSTEMVERILOG_FILE score_count.sv
-set_global_assignment -name SYSTEMVERILOG_FILE statemachine.sv
-set_global_assignment -name SYSTEMVERILOG_FILE pipe.sv
-set_global_assignment -name SYSTEMVERILOG_FILE collision_kill.sv
-set_global_assignment -name SYSTEMVERILOG_FILE flipflop.sv
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity lab8 -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity lab8 -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -entity lab8 -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name ENABLE_OCT_DONE OFF
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
 set_location_assignment PIN_Y2 -to CLOCK_50
 set_location_assignment PIN_AG14 -to CLOCK2_50
 set_location_assignment PIN_AG15 -to CLOCK3_50
@@ -620,8 +613,19 @@ set_location_assignment PIN_D5 -to OTG_INT
 set_location_assignment PIN_A14 -to ENETCLK_25
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity DE2_115_Default -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity DE2_115_Default -section_id Top
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity lab8 -section_id Top
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE Signaltap.stp
+set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
+set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
+set_global_assignment -name QIP_FILE lab8_soc/synthesis/lab8_soc.qip
+set_global_assignment -name SYSTEMVERILOG_FILE lab8_provided_bat/VGA_controller.sv
+set_global_assignment -name VERILOG_FILE lab8_provided_bat/vga_clk.v
+set_global_assignment -name QIP_FILE lab8_provided_bat/vga_clk.qip
+set_global_assignment -name SYSTEMVERILOG_FILE lab8_provided_bat/hpi_io_intf.sv
+set_global_assignment -name SYSTEMVERILOG_FILE lab8_provided_bat/HexDriver.sv
+set_global_assignment -name SYSTEMVERILOG_FILE lab8_provided_bat/Color_Mapper.sv
+set_global_assignment -name SYSTEMVERILOG_FILE lab8_provided_bat/ball.sv
+set_global_assignment -name SYSTEMVERILOG_FILE lab8_provided_bat/lab8.sv
+set_global_assignment -name SIGNALTAP_FILE Signaltap.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/Signaltap_auto_stripped.stp

@@ -1,11 +1,11 @@
 module score_count(
-						input logic [7:0] in, 
-						input logic Clk,
-						input logic Reset,
-						input logic [9:0] pipex,
-						input logic bird_killed,	
-						output logic [7:0] score_out
-						);
+					input logic [7:0] in, 
+					input logic Clk,
+					input logic Reset,
+					input logic [9:0] pipex,
+					input logic bird_killed,	
+					output logic [7:0] score_out
+					);
 					
 		
 	logic [7:0] score_t;
