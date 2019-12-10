@@ -129,17 +129,16 @@ module final_top(
 	 
 	 statemachine control_(.*, .bird_killed(kill_out), .start(start_game), .Reset(Reset_h), .killed_out(endgame)  );
 	 
-	 collision_kill kill_(.*, .collision(kill_one), .Reset(Reset_h), .bird_y(Bird_Y_Pos_), .pipe_x(Pipe_X_Pos_), .pipe_y(Pipe_Y_Pos_) );
+	 collision_kill kill_(.Clk(VGA_VS), .collision(kill_one), .Reset(Reset_h), .bird_y(Bird_Y_Pos_), .pipe_x(Pipe_X_Pos_), .pipe_y(Pipe_Y_Pos_) );
 	 
-	 score_count score_instance(.*, .bird_killed(endgame), .in(score_curr), .Reset(Reset_h), .pipex(Pipe_X_Pos_), .score_out(score_curr));
+	 score_count score_instance(.Clk(VGA_VS), .bird_killed(endgame), .in(score_curr), .Reset(Reset_h), .pipex(Pipe_X_Pos_), .score_out(score_curr));
 	 
     color_mapper color_instance(.*, .Reset(Reset_h));
     
     // Display keycode on hex display
-    HexDriver hex_inst_0 (keycode[3:0], HEX0);
-    HexDriver hex_inst_1 (keycode[7:4], HEX1);
-	 
-	 HexDriver hex_inst_5 (score_curr[7:4], HEX3);
-	 HexDriver hex_inst_4 (score_curr[3:0], HEX2);
+    HexDriver hex_inst_0 (score_curr[3:0], HEX0);
+    HexDriver hex_inst_1 (score_curr[7:4], HEX1);
+	 HexDriver hex_inst_5 (4'hFFFF, HEX3);
+	 HexDriver hex_inst_4 (4'hF, HEX2);
     
 endmodule

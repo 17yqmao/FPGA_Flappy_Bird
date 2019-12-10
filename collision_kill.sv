@@ -14,7 +14,7 @@ module collision_kill(
 				end
 			else if(pipe_x >= 10'd265 && pipe_x <= 10'd375)
 				begin
-					if(((bird_y + 10'd12) >= (pipe_y + 10'd40))||((bird_y - 10'd12) <= (pipe_y - 10'd40)))
+					if(((bird_y + 10'd12) >= (pipe_y + 10'd80))||((bird_y - 10'd12) <= (pipe_y - 10'd80)))
 						begin
 							collision <= 1'b1;
 						end

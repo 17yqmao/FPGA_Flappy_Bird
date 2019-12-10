@@ -14,6 +14,8 @@ module score_count(
 		begin
 			if(bird_killed)
 				score_out <= 8'b00000000;
+			else if(bird_killed == 1'b0 && pipex == 10'd200)
+				score_out <= score_t;
 			else if(bird_killed == 1'b0 && pipex <= 10'd0)
 				score_out <= score_t;
 			if(Reset)
